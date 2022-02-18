@@ -57,7 +57,7 @@ export default function RestaurantItems({ navigation, ...props }) {
         <TouchableOpacity
           key={index}
           activeOpacity={1}
-          style={{ marginBootom: 30 }}
+          style={styles.restaurantDataContainer}
           onPress={() =>
             navigation.navigate("RestaurantDetail", {
               name: restaurant.name,
@@ -69,14 +69,9 @@ export default function RestaurantItems({ navigation, ...props }) {
             })
           }
         >
-          <View
-            style={{ marginTop: 10, padding: 15, backgroundColor: "white" }}
-          >
-            <RestaurantImage image={restaurant.image_url}></RestaurantImage>
-            <RestaurantInfo
-              name={restaurant.name}
-              rating={restaurant.rating}
-            ></RestaurantInfo>
+          <View style={styles.restaurantSubDataContainer}>
+            <RestaurantImage image={restaurant.image_url} />
+            <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
           </View>
         </TouchableOpacity>
       ))}
@@ -101,14 +96,10 @@ const RestaurantImage = (props) => {
             ? props.image
             : "https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content8426.jpg",
         }}
-        style={{ width: "100%", height: 180 }}
-      ></Image>
-      <TouchableOpacity style={{ position: "absolute", right: 20, top: 20 }}>
-        <MaterialCommunityIcons
-          name="heart-outline"
-          size={25}
-          color="white"
-        ></MaterialCommunityIcons>
+        style={styles.restaurantImage}
+      />
+      <TouchableOpacity style={styles.heartIcon}>
+        <MaterialCommunityIcons name="heart-outline" size={25} color="white" />
       </TouchableOpacity>
     </>
   );
@@ -127,30 +118,14 @@ const RestaurantInfo = (props) => {
     max = 50;
   }
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginTop: 10,
-      }}
-    >
+    <View style={styles.restaurantInfoContainer}>
       <View>
-        <Text style={{ fontSize: 15, fontWeight: "bold" }}>{props.name}</Text>
-        <Text style={{ fontSize: 13, color: "gray" }}>
+        <Text style={styles.restaurantName}>{props.name}</Text>
+        <Text style={styles.deliveryTime}>
           {min} - {max} mins
         </Text>
       </View>
-      <View
-        style={{
-          backgroundColor: "#eee",
-          height: 30,
-          width: 30,
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 15,
-        }}
-      >
+      <View style={styles.ratingContainer}>
         <Text>{props.rating}</Text>
       </View>
     </View>
@@ -176,5 +151,48 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 20,
     fontWeight: "normal",
+  },
+
+  restaurantDataContainer: {
+    fontSize: 13,
+    fontWeight: "bold",
+  },
+  restaurantSubDataContainer: {
+    marginTop: 10,
+    padding: 15,
+    backgroundColor: "white",
+  },
+  restaurantImage: {
+    width: "100%",
+    height: 180,
+  },
+  heartIcon: {
+    position: "absolute",
+    right: 20,
+    top: 20,
+  },
+  restaurantInfoContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  restaurantName: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "#212D40",
+  },
+  deliveryTime: {
+    fontSize: 13,
+    color: "gray",
+  },
+  ratingContainer: {
+    backgroundColor: "#eee",
+    height: 30,
+    width: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 15,
+    color: "#212D40",
   },
 });

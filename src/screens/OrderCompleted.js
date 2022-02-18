@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StatusBar, ScrollView } from "react-native";
+import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import LottieView from "lottie-react-native";
@@ -44,24 +44,16 @@ export default function OrderCompleted() {
 
   return (
     <>
-      <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
-        <View
-          style={{
-            marginRight: 15,
-            marginLeft: 15,
-            marginBottom: 15,
-            alignItems: "center",
-            height: "100%",
-          }}
-        >
+      <SafeAreaView style={styles.orderCompletedContainer}>
+        <View style={styles.orderCompletedSubContainer}>
           <LottieView
-            style={{ height: 200, alignSelf: "center" }}
+            style={styles.checkMarkAnimation}
             source={require("../assets/animations/og-check-mark.json")}
             autoPlay
             speed={2}
             loop={false}
           ></LottieView>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+          <Text style={styles.orderConfirmation}>
             Your order at {restaurantName} has been placed for ${totalUSD}
           </Text>
           <ScrollView
@@ -70,7 +62,7 @@ export default function OrderCompleted() {
           >
             <MenuItems foods={lastOrder.items} hideCheckbox={true}></MenuItems>
             <LottieView
-              style={{ height: 200, alignSelf: "center" }}
+              style={styles.cookingAnimation}
               source={require("../assets/animations/og-cooking.json")}
               autoPlay
               speed={1.5}
@@ -82,3 +74,29 @@ export default function OrderCompleted() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  orderCompletedContainer: {
+    backgroundColor: "white",
+    flex: 1,
+  },
+  orderCompletedSubContainer: {
+    marginRight: 15,
+    marginLeft: 15,
+    marginBottom: 15,
+    alignItems: "center",
+    height: "100%",
+  },
+  checkMarkAnimation: {
+    height: 200,
+    alignSelf: "center",
+  },
+  orderConfirmation: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  cookingAnimation: {
+    height: 200,
+    alignSelf: "center",
+  },
+});

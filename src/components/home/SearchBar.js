@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
@@ -9,9 +9,9 @@ export default function SearchBar({ city, onCityChange }) {
       <View style={styles.inputContainerStyle}>
         <MaterialIcons
           name="location-pin"
-          color="black"
+          color="#212D40"
           style={styles.locationIconStyle}
-        ></MaterialIcons>
+        />
         <TextInput
           autofocus={true}
           placeholder="Search"
@@ -19,14 +19,13 @@ export default function SearchBar({ city, onCityChange }) {
           style={styles.textInputStyle}
           value={city}
           onChangeText={onCityChange}
-          // onEndEditing={onCitySubmit}
-        ></TextInput>
+        />
         <TouchableOpacity>
           <MaterialIcons
             name="location-searching"
             style={styles.targetIconStyle}
-            color="black"
-          ></MaterialIcons>
+            color="#212D40"
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -41,6 +40,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
   },
+
   inputContainerStyle: {
     marginTop: 3,
     backgroundColor: "#eee",
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     paddingTop: 7,
     marginRight: 5,
   },
+
   textInputStyle: {
     width: "77%",
   },

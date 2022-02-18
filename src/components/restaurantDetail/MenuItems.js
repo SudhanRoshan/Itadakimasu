@@ -28,14 +28,11 @@ export default function MenuItems({
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((food, index) => (
         <View key={index}>
-          <View style={styles.menuItemStyle}>
+          <View style={styles.menuItemsContainer}>
             {hideCheckbox ? (
               <></>
             ) : (
               <BouncyCheckbox
-                iconStyle={{
-                  borderRadius: 0,
-                }}
                 fillColor="green"
                 isChecked={isFoodInCart(food, cartItems)}
                 onPress={(checkboxValue) => selectItem(food, checkboxValue)}
@@ -46,21 +43,19 @@ export default function MenuItems({
 
             <FoodImage food={food} marginLeft={marginLeft ? marginLeft : 0} />
           </View>
-          <View style={styles.divider} />
+          <View style={styles.bottomDivider} />
         </View>
       ))}
-      <View style={{ height: 120 }} />
+      <View style={styles.emptySpace} />
     </ScrollView>
   );
 }
 
 const FoodInfo = (props) => (
-  <View style={{ width: 240, justifyContent: "space-evenly" }}>
+  <View style={styles.foodInfoContainer}>
     <Text style={styles.titleStyle}>{props.food.title}</Text>
     <Text>{props.food.description}</Text>
-    <Text style={{ fontWeight: "bold", marginTop: 10 }}>
-      {props.food.price}
-    </Text>
+    <Text style={styles.foodPrice}>{props.food.price}</Text>
   </View>
 );
 
@@ -74,12 +69,12 @@ const FoodImage = ({ marginLeft, ...props }) => (
         borderRadius: 8,
         marginLeft: marginLeft,
       }}
-    ></Image>
+    />
   </View>
 );
 
 const styles = StyleSheet.create({
-  menuItemStyle: {
+  menuItemsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     margin: 20,
@@ -88,9 +83,20 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontWeight: "bold",
   },
-  divider: {
+  bottomDivider: {
     borderBottomColor: "black",
     borderBottomWidth: 0.5,
     marginHorizontal: 20,
+  },
+  emptySpace: {
+    height: 120,
+  },
+  foodInfoContainer: {
+    width: 240,
+    justifyContent: "space-evenly",
+  },
+  foodPrice: {
+    fontWeight: "bold",
+    marginTop: 10,
   },
 });

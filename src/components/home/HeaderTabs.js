@@ -1,13 +1,12 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
-import { TouchableOpacity } from "react-native";
 
 export default function HeaderTabs(props) {
   return (
-    <View style={{ flexDirection: "row", alignSelf: "center" }}>
+    <View style={styles.headerContainer}>
       <HeaderButton
         text="Delivery"
-        btnColor="black"
+        btnColor="#212D40"
         textColor="white"
         activeTab={props.activeTab}
         setActiveTab={props.setActiveTab}
@@ -15,7 +14,7 @@ export default function HeaderTabs(props) {
       <HeaderButton
         text="Pickup"
         btnColor="white"
-        textColor="black"
+        textColor="#212D40"
         activeTab={props.activeTab}
         setActiveTab={props.setActiveTab}
       ></HeaderButton>
@@ -26,7 +25,7 @@ export default function HeaderTabs(props) {
 const HeaderButton = (props) => (
   <TouchableOpacity
     style={{
-      backgroundColor: props.activeTab === props.text ? "black" : "white",
+      backgroundColor: props.activeTab === props.text ? "#212D40" : "white",
       paddingVertical: 6,
       paddingHorizontal: 16,
       borderRadius: 30,
@@ -35,7 +34,7 @@ const HeaderButton = (props) => (
   >
     <Text
       style={{
-        color: props.activeTab === props.text ? "white" : "black",
+        color: props.activeTab === props.text ? "white" : "#212D40",
         fontSize: 15,
         fontWeight: "bold",
       }}
@@ -44,3 +43,10 @@ const HeaderButton = (props) => (
     </Text>
   </TouchableOpacity>
 );
+
+const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: "row",
+    alignSelf: "center",
+  },
+});

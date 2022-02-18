@@ -8,9 +8,9 @@ import RestaurantItems, {
 } from "../components/home/RestaurantItems";
 import BottomTabs from "../components/home/BottomTabs";
 import { StatusBar } from "react-native";
+import { apiKey } from "../config";
 
-const YELP_API_KEY =
-  "xNQytcKuzRUNFGSUWOZUuWpv9PAj20bdH6Pm1DgXRjVqsb7WFN1fCmUycX9IE0Epu1tsw_uPuOUfot-BpCo-LGU9ybIioiJrUuX3L88CK1IOW6DrDiYinMgCkYnxYXYx";
+const YELP_API_KEY = apiKey;
 
 export default function Home({ navigation }) {
   const [restaurantData, setRestaurantData] = useState(localRestaurants);
@@ -55,15 +55,14 @@ export default function Home({ navigation }) {
         <SearchBar
           city={city}
           onCityChange={(newCity) => setCity(newCity)}
-          // onCitySubmit={() => {}}
         ></SearchBar>
       </View>
       <ScrollView showVerticalScrollIndicator={false}>
-        <Categories></Categories>
+        <Categories />
         <RestaurantItems
           restaurantData={restaurantData}
           navigation={navigation}
-        ></RestaurantItems>
+        />
       </ScrollView>
       <View
         style={{
@@ -71,7 +70,7 @@ export default function Home({ navigation }) {
           borderBottomWidth: 1,
         }}
       ></View>
-      <BottomTabs></BottomTabs>
+      <BottomTabs />
     </SafeAreaView>
   );
 }

@@ -1,4 +1,3 @@
-//import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import * as React from "react";
 import RootNavigation from "./navigation";
 import { LogBox } from "react-native";
